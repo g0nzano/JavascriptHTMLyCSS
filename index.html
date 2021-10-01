@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX JQUERY</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> <!--aqui se inserta la libreria Jquery metodo cnd para poder utilizar las funciones de ajax incluidas en esta-->
+    <script>
+        $(document).ready(function(){
+            $("#enviar").click(function(){
+
+                var nombre_usuario = $("#nombre").val();
+                var apellido = $("#apellido").val();
+                //$.get metodo ajax incluido en la libreria Jquery(ver mas info en la documentacion de la unidad)
+                $.get("backend.php", {nombre:nombre_usuario, apellido:apellido},function(datos){
+                    $("#resultado").html(datos);
+                });
+            });
+        });
+    </script>
+    <style type="text/css">
+    /*para mejor visualizacion y utilizacion del usuario final se utiliza los estilos css */
+    body{
+        padding: 0;
+        margin: 0;
+        color: white;
+    }
+    #caja{
+        background: blue;
+        text-align: center;
+        padding: 20px;
+        width: 500px;
+        height: 200px;
+        margin: 0 auto;
+    }
+
+    #resultado{
+        color: white;
+        font-size: 24px;
+    }
+    </style>
+</head>
+<body>
+    <div id="caja">  
+        <h2>Registro de usuarios</h2>
+        <input type="text" name="nombre" id="nombre" placeholder="Ingresa tu nombre">
+        <input type="text" name="apellido" id="apellido" placeholder="Ingresa tu apellido">
+        <input type="submit" name="enviar" value="Enviar" id="enviar">
+        <div id="resultado"></div> <!--visualizacion del resultado de la peticion-->
+    </div>
+</body>
+</html>
